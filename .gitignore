@@ -4,6 +4,7 @@ codes/best_models/
 codes/saved_models/
 codes/*.pickle
 codes/*.log
+modelscope_checkpoints/
 
 # Generated figures and caches
 codes/figs/

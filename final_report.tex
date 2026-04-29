@@ -10,6 +10,7 @@
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{xurl}
 
 \hypersetup{
     colorlinks=true,
@@ -270,6 +271,6 @@ At the same time, the conclusions are limited by the experimental budget. The mo
 This project implements and evaluates an MLP and a simple CNN on MNIST. The required components, including linear-layer propagation, softmax cross-entropy, and manual convolution, are implemented in NumPy. The MLP baseline reaches 0.8724 test accuracy, while the simple CNN reaches 0.9467. Momentum optimization improves the MLP to 0.9389 and the CNN to 0.9758, which is the best result. Early stopping does not activate under the five-epoch setting, so it does not change performance. Robustness and visualization analyses show that the CNN learns more suitable and stable image features than the MLP.
 
 \section*{Code and Checkpoints}
-The code repository is available at \url{https://github.com/yuheng-li-ai/CV_HW2}. The checkpoint/model weights link should be added separately before final submission: \textbf{[To be added]}.
+The code repository is available online.\footnote{\url{https://github.com/yuheng-li-ai/CV_HW2}} The checkpoint/model weights are available on ModelScope.\footnote{\url{https://modelscope.cn/models/yuhengli/deeplearning-project1}}
 
 \end{document}

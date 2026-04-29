@@ -74,3 +74,11 @@ python error_analysis_visualization.py
 ## Report
 
 The final report is provided in `final_report.md`. It summarizes the MLP baseline, CNN baseline, optimization experiment, early stopping experiment, robustness analysis, and visualization/error analysis.
+
+## Checkpoints
+
+The trained checkpoints used in the report are available on ModelScope:
+
+```text
+https://modelscope.cn/models/yuhengli/deeplearning-project1
+```

@@ -8,7 +8,7 @@
 
 **Github Repository:** https://github.com/yuheng-li-ai/CV_HW2
 
-**Model Weights / Checkpoints:** [Insert Link]
+**Model Weights / Checkpoints:** https://modelscope.cn/models/yuhengli/deeplearning-project1
 
 ## 1. MLP Baseline
 
