@@ -6,7 +6,7 @@
 
 **Student ID:** 23307130334
 
-**Github Repository:** [To be added after pushing to Github; Github user: yuheng-li-ai; email: yuhengli72@gmail.com]
+**Github Repository:** https://github.com/yuheng-li-ai/CV_HW2
 
 **Model Weights / Checkpoints:** [Insert Link]
 
