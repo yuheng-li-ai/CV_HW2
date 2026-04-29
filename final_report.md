@@ -18,6 +18,8 @@ For the MLP implementation, I completed the forward and backward propagation of 
 
 The MLP baseline converged stably. The best validation accuracy recorded during training was `0.86660`, and the final test accuracy of the saved MLP checkpoint was `0.8724`. The learning curve is saved as `codes/figs/mlp_curve.png`.
 
+This result should be understood as a necessary reference rather than a failure of the MLP implementation. The MLP verifies that the manually implemented linear layer, loss function, optimizer, and runner work correctly. Its limitation mainly comes from flattening the image: local spatial relations must be learned from data rather than built into the architecture.
+
 ## 2. CNN Model and MLP-vs-CNN Comparison
 
 After building the MLP baseline, I implemented a simple CNN for the same MNIST classification task. The convolution operator was implemented manually in NumPy rather than using deep learning library operators. The final CNN used one convolution layer, ReLU activation, flattening, one hidden linear layer, another ReLU activation, and a final linear classifier.
@@ -27,6 +29,8 @@ The CNN setting was kept close to the MLP training setting: learning rate `0.06`
 The final CNN achieved best validation accuracy `0.94430` and test accuracy `0.9467`. This is clearly better than the MLP baseline test accuracy `0.8724`. The result supports the expected observation that CNN is more suitable for image classification because convolution uses local receptive fields and shared filters, while the MLP treats the image as a flattened vector and loses explicit spatial structure.
 
 The CNN learning curve is saved as `codes/figs/cnn_improved_curve.png`.
+
+The CNN is intentionally kept simple. A deeper CNN could probably achieve higher accuracy, but that would weaken the controlled comparison with the MLP. The result shows that even a basic convolutional structure can use spatial information better than a fully connected model.
 
 ## 3. Additional Directions
 
@@ -42,6 +46,8 @@ For CNN, momentum improved the test accuracy from `0.9467` to `0.9758`. The best
 
 The conclusion is that momentum is useful for both models, especially for the CNN. It accelerates and stabilizes optimization by accumulating a velocity term instead of using only the current gradient.
 
+However, this does not mean momentum is always better. With an unsuitable learning rate, momentum may overshoot good regions. In this project, it should be interpreted as an improvement under the fixed learning rate and five-epoch training budget.
+
 ### 3.2 Regularization: Early Stopping
 
 For the regularization direction, I tested early stopping. The early stopping rule monitors validation accuracy at epoch boundaries and stops training if the validation score does not improve for the patience setting.
@@ -51,6 +57,8 @@ For MLP, early stopping did not activate during the 5-epoch run. The final test 
 For CNN, early stopping also did not activate in the final improved run. The best validation accuracy was `0.94430`, and the test accuracy was `0.9467`, matching the improved CNN baseline. This suggests that early stopping is not informative in this experiment setting because the model did not show validation degradation within 5 epochs.
 
 The early stopping curves are saved as `codes/figs/earlystop_mlp_curve.png` and `codes/figs/earlystop_cnn_improved_curve.png`.
+
+This is a negative but meaningful result. Early stopping is mainly useful when validation performance starts to decline, but this did not happen within five epochs. Therefore, it would be misleading to claim that early stopping improved the model here.
 
 ### 3.3 Robustness Analysis: Gaussian Noise
 
@@ -66,6 +74,8 @@ For robustness analysis, I evaluated trained MLP and CNN models under Gaussian n
 
 The CNN remained more stable than the MLP as noise increased. At sigma `0.30`, the MLP dropped to `0.5434`, while the CNN still reached `0.8153`. This suggests that the CNN learned more robust image features than the MLP baseline.
 
+This robustness result is still limited. Gaussian noise is only one perturbation type and does not cover rotation, translation, blur, occlusion, or adversarial noise. Also, the small CNN increase at sigma `0.05` should be treated as random fluctuation rather than a real improvement.
+
 The robustness figure is saved as `codes/figs/robustness_gaussian_noise.png`.
 
 ### 3.4 Error Analysis and Visualization
@@ -76,13 +86,15 @@ The MLP and CNN confusion matrices are saved as `codes/figs/mlp_confusion_matrix
 
 The error analysis confirms the quantitative results: the CNN makes fewer mistakes than the MLP and learns spatial filters that are more suitable for image inputs.
 
+These visualizations are qualitative evidence. They help interpret the result, but they should not replace the numerical evaluation. A filter that looks meaningful is not automatically important, and a noisy-looking weight pattern may still contribute to classification.
+
 ## 4. Main Results Table
 
 | Experiment | Validation accuracy | Test accuracy | Main observation |
 | --- | --- | --- | --- |
 | MLP baseline | 0.86660 | 0.8724 | Stable baseline, but limited by flattened input representation |
 | CNN baseline | 0.94430 | 0.9467 | CNN clearly improves over MLP |
-| MLP + Momentum | [Not recorded in log] | 0.9389 | Momentum improves MLP optimization |
+| MLP + Momentum | 0.93550 | 0.9389 | Momentum improves MLP optimization |
 | CNN + Momentum | 0.97520 | 0.9758 | Best overall result |
 | MLP + Early stopping | 0.86660 | 0.8724 | Early stopping did not activate |
 | CNN + Early stopping | 0.94430 | 0.9467 | Early stopping did not activate |
@@ -118,3 +130,5 @@ The robustness experiment showed that CNN is more stable under Gaussian noise. A
 The error analysis visualizations provide qualitative support for the numerical results. The confusion matrices and misclassified examples show where mistakes still occur, while the MLP weight and CNN kernel visualizations show that the two models learn different kinds of representations.
 
 Overall, the final results satisfy the project requirements: the MLP baseline was implemented and evaluated, the CNN operator and model were implemented manually, the MLP and CNN were compared under similar settings, and additional directions were studied with separate results and discussion.
+
+The main limitation is the small training budget and simple model scale. A stronger MLP, longer training, or deeper CNN could change the exact numbers. Therefore, the report focuses on controlled comparison and implementation correctness rather than claiming that the selected architectures are globally optimal.
