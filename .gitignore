@@ -21,3 +21,9 @@ __MACOSX/
 *.out
 *.toc
 *.synctex.gz
+
+# Local assignment/reference files not included in the code repository.
+project_1.pdf
+implementation_steps.md
+submission_checklist.md
+codes/README.md

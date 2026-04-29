@@ -1,4 +1,4 @@
-# Project 1 Report Draft
+# Project 1 Final Report
 
 **Title:** Project 1 of Neural Network and Deep Learning
 
