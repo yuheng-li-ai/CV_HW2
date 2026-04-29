@@ -1,0 +1,23 @@
+# Data and generated binaries
+codes/dataset/
+codes/best_models/
+codes/saved_models/
+codes/*.pickle
+codes/*.log
+
+# Generated figures and caches
+codes/figs/
+**/__pycache__/
+*.pyc
+
+# OS and transferred metadata
+.DS_Store
+__MACOSX/
+*:Zone.Identifier
+
+# Local report build outputs
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
